@@ -1,0 +1,177 @@
+<div class="h-dvh flex flex-col lg:flex-row">
+  <div
+    class="hidden lg:flex relative flex-1/3 text-white bg-robot bg-right bg-no-repeat bg-cover after:absolute
+    after:inset-0 after:bg-black/80">
+    <div class="w-full flex relative z-20 flex-col items-center justify-center gap-20">
+      @for (step of steps; track $index) {
+        <div class="flex items-center gap-3">
+          <div
+            class="relative size-8 rounded-full bg-white text-black flex items-center justify-center"
+            [ngClass]="{'bg-white/50 text-black/20': currentStep() != step.id}">
+            <lucide-icon [img]="Check" [size]="18" [strokeWidth]="4"/>
+            @if (!$last) {
+              <div
+                class="absolute left-1/2 -translate-x-1/2 top-full translate-y-2 w-0.5 h-20 bg-white"></div>
+            }
+          </div>
+          <div class="flex flex-col">
+            <div class="font-black text-xl">Step {{ (step.id + 1) }}</div>
+            <div class="text-sm font-semibold">{{ step.label }}</div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+  <div class="flex-2/3 flex flex-col">
+    <div class="min-h-16 border-b border-gray-100 lg:h-16 flex items-center justify-between"></div>
+    <div class="grow flex items-center justify-center px-4 lg:px-0">
+      <div class="max-w-md p-2 w-full">
+        @if (currentStep() == 0) {
+          <form class="w-full">
+            <div class="flex items-center gap-2 mb-10">
+              <div class="size-10 bg-black text-white p-1 rounded flex items-center justify-center">
+                <lucide-icon [img]="User"/>
+              </div>
+              <h3 class="text-2xl font-black">{{ steps[currentStep()].label }}</h3>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 mb-3.5">
+              <div class="flex flex-col items-start">
+                <input type="text" name="firstname" id="firstname" placeholder="First Name"
+                       class="h-11 px-4 border border-gray-200 rounded w-full">
+              </div>
+              <div class="flex flex-col items-start">
+                <input type="text" name="lastname" id="lastname" placeholder="Last Name"
+                       class="h-11 px-4 border border-gray-200 rounded w-full">
+              </div>
+            </div>
+            <div class="mb-3.5 flex flex-col items-start relative">
+              <input type="text" name="birthdate" id="birthdate" placeholder="Date of birth"
+                     class="h-11 px-4 border border-gray-200 rounded w-full">
+              <div
+                class="absolute text-xs font-semibold text-gray-500 right-4 top-1/2 -translate-y-1/2 flex items-center gap-0.5 uppercase">
+                <lucide-icon [img]="CalendarDays" [size]="16"/>
+                <label for="birthdate" class="cursor-pointer translate-y-[1px]">MM/DD/YYYY</label>
+              </div>
+            </div>
+            <div class="flex flex-col gap-1.5 mb-10">
+              <div class="flex flex-col items-start">
+                <input type="email" name="email" id="email" placeholder="Email address"
+                       class="h-11 px-4 border border-gray-200 rounded w-full">
+              </div>
+              <div class="text-xs text-gray-500">We will send you weekly updates. If you want to
+                unsubscribe from this service click here.
+                <button class="underline font-black text-black cursor-pointer">Unsubscribe</button>
+              </div>
+            </div>
+          </form>
+        } @else if (currentStep() == 1) {
+          <form>
+            <div class="flex items-center gap-2 mb-10">
+              <div class="size-10 bg-black text-white p-1 rounded flex items-center justify-center">
+                <lucide-icon [img]="Contact2"/>
+              </div>
+              <h3 class="text-2xl font-black">{{ steps[currentStep()].label }}</h3>
+            </div>
+
+            <div class="flex flex-col items-start mb-3.5">
+              <input type="text" name="address" id="address" placeholder="Street address"
+                     class="h-12 px-4 border border-gray-200 rounded w-full">
+            </div>
+
+            <div class="flex flex-col items-start mb-3.5">
+              <input type="text" name="phone" id="phone" placeholder="Phone number"
+                     class="h-12 px-4 border border-gray-200 rounded w-full">
+              <div class="text-xs text-gray-500 mt-1">
+                Once phone number is saved you can edit after 24 hours
+              </div>
+            </div>
+
+            <div class="mb-10">
+              <div class="font-semibold text-xl mb-3.5">Mailing address</div>
+              <div class="flex items-center gap-1 mb-2">
+                <input type="checkbox" name="personal" id="personal" class="size-5">
+                <label for="personal" class="text-gray-600">Use my personal address</label>
+              </div>
+              <div class="flex items-center gap-1 mb-3.5">
+                <input type="checkbox" name="different" id="different" class="size-5">
+                <label for="different" class="text-gray-600">Use a different mailing address</label>
+              </div>
+              <div class="text-xs text-gray-500">All paper receipts will be sent to the mailing
+                address provided. If you do not want to use this service.
+                <button class="underline font-bold text-black cursor-pointer">Click here</button>
+              </div>
+            </div>
+          </form>
+        } @else if (currentStep() == 2) {
+          <form>
+            <div class="flex items-center gap-2 mb-10">
+              <div class="size-10 bg-black text-white p-1 rounded flex items-center justify-center">
+                <lucide-icon [img]="Key"/>
+              </div>
+              <h3 class="text-2xl font-black">{{ steps[currentStep()].label }}</h3>
+            </div>
+
+            <div class="flex flex-col items-start mb-7">
+              <input type="text" name="SinNumber" id="sinNumber" placeholder="SIN Number"
+                     class="h-12 px-4 border border-gray-200 rounded w-full">
+            </div>
+
+            <div class="flex flex-col mb-10">
+              <div class="text-sm font-semibold mb-3">Set up your password.</div>
+              <div class="flex flex-col items-start relative mb-3.5">
+                <input type="password" name="password" id="password" placeholder="Password"
+                       class="h-12 px-4 border border-gray-200 rounded w-full">
+                <button
+                  class="size-8 flex items-center justify-center cursor-pointer text-gray-500 hover:bg-gray-50 duration-150 rounded-full absolute right-2 top-1/2 -translate-y-1/2">
+                  <lucide-icon [img]="Eye" [size]="20"/>
+                </button>
+              </div>
+              <div class="flex flex-col items-start relative">
+                <input type="password" name="confirmPassword" id="confirmPassword"
+                       placeholder="Confirm password"
+                       class="h-12 px-4 border border-gray-200 rounded w-full">
+                <button
+                  class="size-8 flex items-center justify-center cursor-pointer text-gray-500 hover:bg-gray-50 duration-150 rounded-full absolute right-2 top-1/2 -translate-y-1/2">
+                  <lucide-icon [img]="Eye" [size]="20"/>
+                </button>
+              </div>
+            </div>
+          </form>
+        } @else {
+          <div class="flex flex-col items-center">
+            <lucide-icon [img]="BadgeCheck" [size]="120"/>
+            <div class="font-black text-2xl mb-3.5">You are now registered.</div>
+            <p class="text-center text-sm text-gray-700 font-medium mb-2.5">
+              You will receive a confirmation email with account details for the further questions
+              click the link below.
+            </p>
+            <a href="https://github.com/king-martinien" target="_blank"
+               class="flex items-center gap-1">
+              <img ngSrc="/images/Robot-by_Kate_Hazen_of_System76.png" alt="Robot" width="2560"
+                   height="1440" class="size-6 object-cover rounded-full overflow-hidden">
+              <span class="font-bold">king-Martinien</span>
+            </a>
+          </div>
+        }
+        @if (currentStep() <= 2) {
+          <div class="flex items-center justify-between gap-2">
+            @if (currentStep() != 0) {
+              <button
+                class="cursor-pointer px-6 py-2 h-11 text-sm font-medium flex items-center justify-center gap-1 border border-black rounded"
+                type="button" (click)="currentStep.set(currentStep() - 1)">
+                <lucide-icon [img]="ArrowLeft" [size]="18"/>
+                <span>Prev</span>
+              </button>
+            }
+            <button type="button" (click)="currentStep.set(currentStep() + 1)"
+                    class="w-full flex items-center justify-center gap-1 cursor-pointer px-6 py-2 h-11 text-sm font-medium bg-black/90 hover:bg-black duration-200 text-white rounded">
+              <span>Continue</span>
+              <lucide-icon [img]="ArrowRight" [size]="18"/>
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

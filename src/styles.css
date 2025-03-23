@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Manrope:wght@200..800&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --background-image-robot: url('../public/images/Robot-by_Kate_Hazen_of_System76.png');
+}
+
+@layer base {
+  html, body {
+    font-family: 'Manrope', 'DM Sans', sans-serif;
+
+    &::selection {
+      background: var(--color-black);
+      color: var(--color-white);
+    }
+  }
+}
+
+@layer components {
+}
